@@ -20,7 +20,18 @@ export const agent = {
     "统一配置 GitKraken 的 Magpie 网关连接，并将所选模型同时应用到全部六项 AI 功能。网关 URL 会自动写入；API Key 可留空，若要使用 GitKraken 的测试连接按钮则填写任意非空值。如需为各项功能分别选择不同模型，请改用六个独立功能插件，不要与本插件同时启用。",
 }
 
-/** 在 Magpie 切换模型时连接 GitKraken 网关，并将当前所选模型同步写入全部六项 AI 功能。 */
+/** 从 Magpie 传入的 model 参数中提取模型标识字符串。 */
+function resolveModelId(model) {
+  if (typeof model === "string") {
+    return model
+  }
+  if (model && typeof model === "object" && typeof model.id === "string") {
+    return model.id
+  }
+  return ""
+}
+
+/** 在 Magpie 切换模型时连接 GitKraken 网关，并将当前所选模型同步写入其余五项 AI 功能。 */
 export function connect({ gateway, model }) {
   const config = {
     // 启用 GitKraken 自定义 AI 提供商。
@@ -31,20 +42,19 @@ export function connect({ gateway, model }) {
     "ai.providers.ConfigurableOpenAI.baseUrl": gateway.v1,
   }
 
-  // 仅在 Magpie 传入有效模型标识时同步写入六项功能字段，避免初始化阶段写入空值覆盖现有配置。
-  if (typeof model === "string" && model.length > 0) {
-    // 提交消息生成功能的模型字段。
-    config["ai.providers.ConfigurableOpenAI.commitMessage.model"] = model
+  const modelId = resolveModelId(model)
+  // commitMessage.model 由 Magpie 按 agent.model 自动写入，此处同步写入其余五项功能模型。
+  if (modelId.length > 0) {
     // 冲突解决功能的模型字段。
-    config["ai.providers.ConfigurableOpenAI.conflictResolution.model"] = model
+    config["ai.providers.ConfigurableOpenAI.conflictResolution.model"] = modelId
     // 解释更改功能的模型字段。
-    config["ai.providers.ConfigurableOpenAI.explainCommits.model"] = model
+    config["ai.providers.ConfigurableOpenAI.explainCommits.model"] = modelId
     // 拉取请求功能的模型字段。
-    config["ai.providers.ConfigurableOpenAI.pullRequest.model"] = model
+    config["ai.providers.ConfigurableOpenAI.pullRequest.model"] = modelId
     // 提交编写器（变基）功能的模型字段。
-    config["ai.providers.ConfigurableOpenAI.rebase.model"] = model
+    config["ai.providers.ConfigurableOpenAI.rebase.model"] = modelId
     // 贮藏消息生成功能的模型字段。
-    config["ai.providers.ConfigurableOpenAI.stashMessage.model"] = model
+    config["ai.providers.ConfigurableOpenAI.stashMessage.model"] = modelId
   }
 
   return config

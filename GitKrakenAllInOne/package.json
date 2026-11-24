@@ -1,6 +1,6 @@
 {
   "name": "magpie-gitkraken-all-in-one",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "统一配置 GitKraken 的 Magpie 网关连接，并为全部六项 AI 功能设置同一个模型",
   "license": "MIT",
