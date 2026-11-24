@@ -1,9 +1,31 @@
 {
   "name": "magpie-gitkraken-pull-request",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "description": "为 GitKraken 拉取请求功能单独选择模型",
+  "license": "MIT",
+  "author": "liliangan",
+  "keywords": [
+    "magpie",
+    "magpie-plugin",
+    "gitkraken",
+    "ai"
+  ],
+  "files": [
+    "gitkraken-pull-request.agent.js",
+    "icon.png",
+    "README.md",
+    "README.en.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liliangan/magpie-GitKraken.git",
+    "directory": "GitKrakenPullRequest"
+  },
+  "homepage": "https://github.com/liliangan/magpie-GitKraken#readme",
+  "bugs": {
+    "url": "https://github.com/liliangan/magpie-GitKraken/issues"
+  },
   "magpie": {
     "name": "GitKraken 拉取请求",
     "agent": "./gitkraken-pull-request.agent.js",

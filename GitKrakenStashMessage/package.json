@@ -1,9 +1,31 @@
 {
   "name": "magpie-gitkraken-stash-message",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "description": "为 GitKraken 贮藏消息生成功能单独选择模型",
+  "license": "MIT",
+  "author": "liliangan",
+  "keywords": [
+    "magpie",
+    "magpie-plugin",
+    "gitkraken",
+    "ai"
+  ],
+  "files": [
+    "gitkraken-stash-message.agent.js",
+    "icon.png",
+    "README.md",
+    "README.en.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liliangan/magpie-GitKraken.git",
+    "directory": "GitKrakenStashMessage"
+  },
+  "homepage": "https://github.com/liliangan/magpie-GitKraken#readme",
+  "bugs": {
+    "url": "https://github.com/liliangan/magpie-GitKraken/issues"
+  },
   "magpie": {
     "name": "GitKraken 贮藏消息生成",
     "agent": "./gitkraken-stash-message.agent.js",

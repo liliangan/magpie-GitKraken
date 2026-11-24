@@ -1,9 +1,31 @@
 {
   "name": "magpie-gitkraken-ai",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "description": "GitKraken 提交消息模型配置，并负责设置 GitKraken 共用的 Magpie 网关连接",
+  "license": "MIT",
+  "author": "liliangan",
+  "keywords": [
+    "magpie",
+    "magpie-plugin",
+    "gitkraken",
+    "ai"
+  ],
+  "files": [
+    "gitkraken.agent.js",
+    "icon.png",
+    "README.md",
+    "README.en.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liliangan/magpie-GitKraken.git",
+    "directory": "GitKrakenCommitMessage"
+  },
+  "homepage": "https://github.com/liliangan/magpie-GitKraken#readme",
+  "bugs": {
+    "url": "https://github.com/liliangan/magpie-GitKraken/issues"
+  },
   "magpie": {
     "name": "GitKraken 提交消息生成（Magpie 网关）",
     "agent": "./gitkraken.agent.js",
